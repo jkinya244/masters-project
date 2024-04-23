@@ -1,0 +1,16 @@
+<h1>Users#show</h1>
+<p>Find me in app/views/users/show.html.erb</p>
+
+<!-- Displaying favorite recipes -->
+<h2>Favorite Recipes</h2>
+<% current_user.favorite_recipes.each do |favorite_recipe| %>
+  <%= link_to favorite_recipe.recipe.title, recipe_path(favorite_recipe.recipe) %>
+<% end %>
+
+<!-- Displaying user reviews -->
+<h2>My Reviews</h2>
+<% current_user.reviews.each do |review| %>
+  <p><%= review.content %></p>
+  <p>Rating: <%= review.rating %></p>
+<% end %>
+

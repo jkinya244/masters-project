@@ -1,0 +1,24 @@
+<h1>Recipes</h1>
+
+<div class="container mt-3">
+  <%= link_to 'Get a Random Recipe!', random_recipe_recipes_path, class: 'btn btn-primary btn-lg mb-3' %>
+
+  <% @recipes.each do |recipe| %>
+    <div class="row mb-4">
+      <div class="col-md-8">
+        <h3><%= recipe.title %></h3>
+        <p><strong>Cuisine:</strong> <%= recipe.cuisine %></p>
+        <%= link_to 'View Details', recipe_path(recipe), class: 'btn btn-primary mr-2' %>
+      </div>
+      <div class="col-md-4">
+        <!-- Display images associated with the recipe -->
+        <% recipe.images.each do |image| %>
+          <%= image_tag image.url, alt: image.alt_text, class: 'img-fluid mb-3' %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to 'New Recipe', new_recipe_path, class: 'btn btn-success mr-2' %>
+

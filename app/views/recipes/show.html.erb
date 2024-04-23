@@ -1,0 +1,25 @@
+<!-- In the show.html.erb view for recipes -->
+<%= link_to 'Back to Recipes', recipes_path %> <!-- This link takes the user back to the recipes index -->
+<%= link_to 'View Another Random Recipe', random_recipe_recipes_path %> <!-- This link generates a new random recipe -->
+
+<h1><%= @recipe.title %></h1>
+<p><%= @recipe.cuisine %></p>
+<p><%= @recipe.meal_type %></p>
+<p><%= @recipe.cooking_instructions %></p>
+
+<!-- Display images associated with the recipe -->
+<div class="row">
+  <% @recipe.images.each do |image| %>
+    <div class="col-md-4">
+      <%= image_tag image.url, alt: image.alt_text, class: 'img-fluid mb-3' %>
+    </div>
+  <% end %>
+</div>
+
+<!-- Review form -->
+<%= form_with(model: [@recipe, @recipe.reviews.build], local: true) do |form| %>
+  <%= form.text_area :content, placeholder: 'Leave a review...' %>
+  <%= form.number_field :rating, placeholder: 'Rating (1-5)' %>
+  <%= form.submit 'Submit Review' %>
+<% end %>
+

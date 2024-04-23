@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: superuser  # Using the 'superuser' PostgreSQL user
+  password: 12345  # Password for the 'superuser', consider using ENV in production
+  host: localhost
+
+development:
+  <<: *default
+  database: recipe_roulette_development
+
+test:
+  <<: *default
+  database: recipe_roulette_test
+
+production:
+  <<: *default
+  database: recipe_roulette_production
+  username: superuser
+  password: <%= ENV['RECIPE_ROULETTE_DATABASE_PASSWORD'] %>  # It's good practice to use an env var for production passwords
+
